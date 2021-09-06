@@ -38,14 +38,24 @@ export default function Application(props) {
     
   },[])
 
+  
+  // Function below allow us to change the local state when we book an interview
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+  }
+
   const appointmentArr = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     return <Appointment 
               key={appointment.id}
               {...appointment}
               interview={interview}
-              interviewers={dailyInterviewers} />
+              interviewers={dailyInterviewers}
+              bookInterview={bookInterview}
+            />
   })
+
+
 
   return (
     <main className="layout">
