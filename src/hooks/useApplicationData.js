@@ -24,7 +24,27 @@ export default function useApplicationData() {
 
     return (axios.put(`/api/appointments/${id}`, {interview})
     .then(response => setState({...state, appointments})))
-    
+    .then(response => {
+      let dayID = NaN;
+      for (const aDay of state.days) {
+        for(const app of aDay.appointments) {
+          if (app === id) {
+            dayID = aDay.id;
+          }
+        }
+      }
+      return dayID;
+    })
+    .then(response => {
+      const targetIndex = response - 1;
+      const days = [...state.days];
+      const dayToBeUpdated = days[targetIndex];
+      const updatedDay = {...dayToBeUpdated, spots: dayToBeUpdated.spots - 1};
+      days.splice(targetIndex, 1, updatedDay);
+      console.log(days);
+      // setState({...state, days})
+    })
+      
   }
 
   // Function below deletes local interview and makes axios request to delete
@@ -40,7 +60,6 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    // setState({...state, appointments})
     return (axios.delete(`/api/appointments/${id}`)
     .then(response => setState({...state, appointments})))
 
