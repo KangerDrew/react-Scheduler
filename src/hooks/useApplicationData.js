@@ -77,22 +77,22 @@ export default function useApplicationData() {
   // object.
 
   const updateSpots = function(state, appointments) {
-    const newDays = []
+    const newDays = [];
 
     for(const aDay of state.days) {
       let spotCounter = 0;
-      const appointArrForDay = []
+      const appointArrForDay = [];
       aDay.appointments.forEach(id => appointArrForDay.push(appointments[id]));
 
       for(const anAppointment of appointArrForDay) {
-        if(anAppointment["interview"] === null) spotCounter += 1
+        if(anAppointment["interview"] === null) spotCounter += 1;
       }
 
       const updatedDay = {...aDay, spots:spotCounter};
-      newDays.push(updatedDay)
+      newDays.push(updatedDay);
 
     }
-    return newDays
+    return newDays;
   }
 
 
