@@ -23,31 +23,8 @@ export default function useApplicationData() {
     };
 
     return (axios.put(`/api/appointments/${id}`, {interview})
-    .then(response => {return appointments /* this is where setState used to be */}))
-    .then(response => {
-      const appointments = response;
-      let dayID = NaN;
-      for (const aDay of state.days) {
-        for(const app of aDay.appointments) {
-          if (app === id) {
-            dayID = aDay.id;
-          }
-        }
-      }
-      return [dayID, appointments];
-    })
-    .then(response => {
-      const targetIndex = response[0] - 1;
-      const appointments = response[1];
-      const days = [...state.days];
-      const dayToBeUpdated = days[targetIndex];
-      const updatedDay = {...dayToBeUpdated, spots: dayToBeUpdated.spots - 1};
-      days.splice(targetIndex, 1, updatedDay);
-      console.log(state.days);
-      console.log(days);
-      setState(prev =>{return {...state, days, appointments}})
-    })
-      
+    .then(response => setState({...state, appointments})))
+
   }
 
   // Function below deletes local interview and makes axios request to delete
@@ -64,31 +41,7 @@ export default function useApplicationData() {
     };
 
     return (axios.delete(`/api/appointments/${id}`)
-    .then(response => {return appointments} /* this is where setState used to be */ ))
-    .then(response => {
-      const appointments = response;
-      let dayID = NaN;
-      for (const aDay of state.days) {
-        for(const app of aDay.appointments) {
-          if (app === id) {
-            dayID = aDay.id;
-          }
-        }
-      }
-      return [dayID, appointments];
-    })
-    .then(response => {
-      const targetIndex = response[0] - 1;
-      const appointments = response[1];
-      const days = [...state.days];
-      const dayToBeUpdated = days[targetIndex];
-      const updatedDay = {...dayToBeUpdated, spots: dayToBeUpdated.spots + 1};
-      days.splice(targetIndex, 1, updatedDay);
-      console.log(state.days);
-      console.log(days);
-      setState(prev =>{return {...state, days, appointments}})
-    })
-
+    .then(response => setState({...state, appointments})))
 
   }
   
