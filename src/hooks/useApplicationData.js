@@ -23,8 +23,10 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
+    const days = updateSpots(state, appointments);
+
     return (axios.put(`/api/appointments/${id}`, {interview})
-    .then(response => setState({...state, appointments})))
+    .then(response => setState({...state, days, appointments})))
 
   }
 
@@ -41,8 +43,10 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
+    const days = updateSpots(state, appointments);
+
     return (axios.delete(`/api/appointments/${id}`)
-    .then(response => setState({...state, appointments})))
+    .then(response => setState({...state, days, appointments})))
 
   }
   
@@ -65,12 +69,21 @@ export default function useApplicationData() {
 
   const setDay = day => setState({ ...state, day });
 
-  const updateSpots = function() {
+
+
+  // The below function takes the modified appointments
+  // object from cancelInterview or bookInterview and
+  // returns a new array to be set as days in the state
+  // object.
+
+  const updateSpots = function(state, appointments) {
     const newDays = []
-    
+
     for(const aDay of state.days) {
       let spotCounter = 0;
-      const appointArrForDay = getAppointmentsForDay(state, aDay["name"])
+      const appointArrForDay = []
+      aDay.appointments.forEach(id => appointArrForDay.push(appointments[id]));
+
       for(const anAppointment of appointArrForDay) {
         if(anAppointment["interview"] === null) spotCounter += 1
       }
@@ -79,13 +92,8 @@ export default function useApplicationData() {
       newDays.push(updatedDay)
 
     }
-
-    setState({...state, days:newDays});
+    return newDays
   }
-
-  useEffect(() => {
-    updateSpots()
-  }, [state.appointments])
 
 
   return {state, setDay, bookInterview, cancelInterview}
