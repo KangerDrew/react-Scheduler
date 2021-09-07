@@ -66,13 +66,21 @@ export default function useApplicationData() {
   const setDay = day => setState({ ...state, day });
 
   const updateSpots = function() {
-    console.log("This thing ran.")
-
+    const newDays = []
+    
     for(const aDay of state.days) {
+      let spotCounter = 0;
       const appointArrForDay = getAppointmentsForDay(state, aDay["name"])
+      for(const anAppointment of appointArrForDay) {
+        if(anAppointment["interview"] === null) spotCounter += 1
+      }
+
+      const updatedDay = {...aDay, spots:spotCounter};
+      newDays.push(updatedDay)
 
     }
 
+    setState({...state, days:newDays});
   }
 
   useEffect(() => {
