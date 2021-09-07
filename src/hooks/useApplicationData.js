@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
+import { getAppointmentsForDay } from "../helpers/selectors";
 
 
 export default function useApplicationData() {
@@ -63,6 +64,20 @@ export default function useApplicationData() {
   },[])
 
   const setDay = day => setState({ ...state, day });
+
+  const updateSpots = function() {
+    console.log("This thing ran.")
+
+    for(const aDay of state.days) {
+      const appointArrForDay = getAppointmentsForDay(state, aDay["name"])
+
+    }
+
+  }
+
+  useEffect(() => {
+    updateSpots()
+  }, [state.appointments])
 
 
   return {state, setDay, bookInterview, cancelInterview}
