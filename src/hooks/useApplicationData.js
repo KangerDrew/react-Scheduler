@@ -26,7 +26,7 @@ export default function useApplicationData() {
     const days = updateSpots(state, appointments);
 
     return (axios.put(`/api/appointments/${id}`, {interview})
-    .then(response => setState({...state, days, appointments})))
+    .then(response => setState({...state, days, appointments})));
 
   }
 
@@ -64,7 +64,7 @@ export default function useApplicationData() {
         const appointments = all[1].data;
         const interviewers = all[2].data;
         setState(prev => ({...prev, days, appointments, interviewers}))
-      })
+      });
   },[])
 
   const setDay = day => setState({ ...state, day });

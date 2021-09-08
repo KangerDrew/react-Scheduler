@@ -28,7 +28,7 @@ export default function Application(props) {
               bookInterview={bookInterview}
               cancelInterview={cancelInterview}
             />
-  })
+  });
 
   return (
     <main className="layout">

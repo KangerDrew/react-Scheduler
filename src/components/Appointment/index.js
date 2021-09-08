@@ -28,7 +28,7 @@ export default function Appointment(props) {
   );
 
 
-  function save(name, interviewer) {
+  const save = function(name, interviewer) {
     transition(SAVING);
     const interview = {
       student: name,
@@ -40,9 +40,9 @@ export default function Appointment(props) {
       transition(SHOW);
     })
     .catch(error => transition(ERROR_SAVE, true))
-  }
+  };
 
-  function destroy() {
+  const destroy = function() {
     transition(DELETING, true);
     props.cancelInterview(props.id)
     .then(response => {
@@ -50,7 +50,7 @@ export default function Appointment(props) {
     })
     .catch(error => transition(ERROR_DELETE , true))
 
-  }
+  };
 
   return (
     <article className="appointment">

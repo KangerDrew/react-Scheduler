@@ -16,22 +16,22 @@ export default function Form(props) {
 
     setError("");
     props.onSave(name, interviewer);
-  }
+  };
   
 
   const reset = function() {
     setName("");
     setInterviewer(null);
-  }
+  };
 
   const cancel = function() {
     reset();
     props.onCancel();
-  }
+  };
 
   const save = function() {
     validate();
-  }
+  };
 
 
   return (
@@ -48,11 +48,7 @@ export default function Form(props) {
             data-testid="student-name-input"
           />
         </form>
-
-
         <section className="appointment__validation">{error}</section>
-
-
         <InterviewerList interviewers={props.interviewers} value={interviewer} onChange={setInterviewer} />
       </section>
       <section className="appointment__card-right">
