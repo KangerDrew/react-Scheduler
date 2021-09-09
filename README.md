@@ -1,13 +1,11 @@
 # Interview Scheduler Project
 
-Interview Scheduler is a simple, single-page app that uses React framework that allows users to book and cancel interviews. We combine a concise API with a WebSocket server to build a realtime experience.  
+Interview Scheduler is a simple, single-page app that uses ReactJS to allow users to book and cancel interviews. We combine a concise API with a WebSocket server to build a realtime experience.  
 
 
 ## Layouts
 
 !["Demo"](https://github.com/KangerDrew/react-Scheduler/blob/master/docs/demo.gif)
-
-!["Error Handeling"](https://github.com/KangerDrew/react-Scheduler/blob/master/docs/error-handeling.gif)
 
 
 ## Getting Started
