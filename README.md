@@ -1,6 +1,6 @@
-# Scheduler Project
+# Interview Scheduler Project
 
-Scheduler is a simple, single-page app that uses React.js. 
+Interview Scheduler is a simple, single-page app that uses React framework that allows users to book and cancel interviews. We combine a concise API with a WebSocket server to build a realtime experience.  
 
 
 ## Layouts
@@ -27,6 +27,10 @@ Scheduler is a simple, single-page app that uses React.js.
 ## Getting Started
 
 1. Install all dependencies (using the `npm install` command).
-2. Run the development web server using the `npm start` command.
-3. Open up the browser of your preference, and paste in http://localhost:8000/ to begin.
-4. The website displays two 
+2. Run the development web server using the `npm start` command. This should automatically open up the default browser to http://localhost:8000/
+3. A request willl be made to the API server to load the appointments.
+4. The website will display the days of the week on the leftmost column, and the appointments for that selected day on the main page.
+5. A user can choose to create a new appointment from any of the available "empty" spot.
+  - Doing so will display the form to enter the users name, the available interviewer for that day, and buttons to save/cancel the appointment.
+6. Appointments can also be edited/cancelled by clicking the edit or delete button on the bottom right corner of the existing appointments.
+7. If an error occurs while fetching data from the API, a message will appear on screen to notify that the operation was unsuccessful!
