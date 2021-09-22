@@ -22,7 +22,7 @@ Interview Scheduler is a simple, single-page app that uses ReactJS to allow user
 - react-test-renderer
 - psql database
 
-## Getting Started
+## Using Scheduler
 
 1. Install all dependencies (using the `npm install` command).
 2. Run the development web server using the `npm start` command. This should automatically open up the default browser to http://localhost:8000/
